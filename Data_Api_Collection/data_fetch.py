@@ -95,7 +95,6 @@ def get_data_temp_bulk(latitude: float, longitude: float, start_time: int, end_t
 
     return df
 
-print(get_data_temp_bulk(24.7136, 46.6753, 2022, 2022, "Riyadh"))
 
 
 

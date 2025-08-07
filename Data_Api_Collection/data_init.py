@@ -7,6 +7,7 @@ import time
 
 temp_data = "C:\\Users\\Mohammed\\Desktop\\Machine learning project for Tourism Data\\Data\\Temp_Province_data.csv"
 tourist_data = "C:\\Users\\Mohammed\\Desktop\\Machine learning project for Tourism Data\\Data\\Tourism_data.csv"
+tourist_temp_data = "C:\\Users\\Mohammed\\Desktop\\Machine learning project for Tourism Data\\Data\\tourism_with_temps.csv"
 
 
 
@@ -70,8 +71,29 @@ def init_temperature_data():
            else:
                 raise Exception(f"Error fetching temperature data for {key}, {df_response}")
 
-init_temperature_data()
-init_data_tourist()
+def merge_data():
+     tourist_df = pd.read_csv(tourist_data)
+     temp_df = pd.read_csv(temp_data)
+
+     tourist_df['year'] = tourist_df['year'].astype(int)
+     temp_df['year'] = temp_df['year'].astype(int)
+     tourist_df['month'] = tourist_df['month'].astype(int)
+     temp_df['month'] = temp_df['month'].astype(int)
+
+
+     origin_temp = temp_df.rename(columns={'province': 'originProvinceNameEn', 'temp': 'origin_temp'})
+     tourist_df = tourist_df.merge(origin_temp, on=['originProvinceNameEn', 'year', 'month'], how='left')
+
+     destination_temp = temp_df.rename(columns={'province': 'destinationProvinceNameEn', 'temp': 'destination_temp'})
+     tourist_df = tourist_df.merge(destination_temp, on=['destinationProvinceNameEn', 'year', 'month'], how='left')
+
+     tourist_df.to_csv(tourist_temp_data, index=False)
+
+
+
+merge_data()
+
+
 
 
 
