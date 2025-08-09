@@ -20,7 +20,7 @@ def load_data(csv_path: str) -> pd.DataFrame:
     df["year_month"] = df["date"].dt.to_period("M").astype(str)
     return df
 
-csv_path = "https://raw.githubusercontent.com/<your-username>/<your-repo-name>/master/Data/tourism_with_temps.csv"
+csv_path = "https://raw.githubusercontent.com/STEELWARDEN/Tourism_Data/master/Data/tourism_with_temps.csv"
 df = load_data(csv_path)
 
 
