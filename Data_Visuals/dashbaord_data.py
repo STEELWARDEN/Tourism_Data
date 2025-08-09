@@ -20,7 +20,7 @@ def load_data(csv_path: str) -> pd.DataFrame:
     df["year_month"] = df["date"].dt.to_period("M").astype(str)
     return df
 
-csv_path = r"C:\Users\Mohammed\Desktop\Machine learning project for Tourism Data\Data\tourism_with_temps.csv"
+csv_path = "https://raw.githubusercontent.com/<your-username>/<your-repo-name>/master/Data/tourism_with_temps.csv"
 df = load_data(csv_path)
 
 
@@ -164,9 +164,7 @@ else:
 
 st.divider()
 
-# ==========================================================
-# 3) Scatter: Spending vs Nights (colored by Purpose)
-# ==========================================================
+
 st.subheader("3) Spending vs. Nights (bubble size = trips, color = purpose)")
 if {"spendSAR","nights","trips"}.issubset(fdf.columns) and not fdf.empty:
     scatter = (
@@ -196,9 +194,7 @@ else:
 
 st.divider()
 
-# ==========================================================
-# 4) Trip Flow Matrix (Heatmap): Origin → Destination
-# ==========================================================
+
 st.subheader("4) Trip Flow Matrix (Origin → Destination)")
 st.caption("Intensity = number of trips between origin and destination.")
 
@@ -229,9 +225,7 @@ else:
 
 st.divider()
 
-# ==========================================================
-# 5) Dual-Axis: Trips (bars) & Avg Destination Temp (line)
-# ==========================================================
+
 st.subheader("5) Trips vs. Avg Destination Temperature by Month (dual-axis)")
 st.caption("Bars = total trips per month; Line = average destination_temp per month.")
 
