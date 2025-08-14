@@ -91,10 +91,6 @@ def merge_data():
 
 
 
-merge_data()
-
-
-
 
 
 
